@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Letícia Brandão Couto - CosmoFarm",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 200, "left": 200, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht22", "top": 20, "left": 20, "attrs": { "temperature": "24", "humidity": "65" } },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr", "top": 20, "left": 180, "attrs": { "value": "500" } },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 20, "left": 380, "attrs": { "pins": "i2c" } },
+    { "type": "wokwi-led", "id": "ledGrow1", "top": 20, "left": 620, "attrs": { "color": "red", "label": "Grow R" } },
+    { "type": "wokwi-led", "id": "ledGrow2", "top": 60, "left": 620, "attrs": { "color": "blue", "label": "Grow B" } },
+    { "type": "wokwi-led", "id": "ledStatus", "top": 100, "left": 620, "attrs": { "color": "green", "label": "Status OK" } },
+    { "type": "wokwi-led", "id": "ledAlerta", "top": 140, "left": 620, "attrs": { "color": "red", "label": "Alerta" } },
+    { "type": "wokwi-relay-module", "id": "relayBomba", "top": 400, "left": 20, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relayVent", "top": 400, "left": 200, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 20, "left": 700, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 60, "left": 700, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 100, "left": 700, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r4", "top": 140, "left": 700, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    ["dht22:VCC", "mega:5V", "red", []],
+    ["dht22:GND", "mega:GND.1", "black", []],
+    ["dht22:SDA", "mega:2", "green", []],
+    ["ldr:VCC", "mega:5V", "red", []],
+    ["ldr:GND", "mega:GND.2", "black", []],
+    ["ldr:AO", "mega:A0", "yellow", []],
+    ["lcd:VCC", "mega:5V", "red", []],
+    ["lcd:GND", "mega:GND.3", "black", []],
+    ["lcd:SDA", "mega:20", "blue", []],
+    ["lcd:SCL", "mega:21", "yellow", []],
+    ["mega:4", "r1:1", "orange", []], ["r1:2", "ledGrow1:A", "orange", []], ["ledGrow1:K", "mega:GND.4", "black", []],
+    ["mega:5", "r2:1", "purple", []], ["r2:2", "ledGrow2:A", "purple", []], ["ledGrow2:K", "mega:GND.5", "black", []],
+    ["mega:6", "r3:1", "green", []], ["r3:2", "ledStatus:A", "green", []], ["ledStatus:K", "mega:GND.6", "black", []],
+    ["mega:7", "r4:1", "red", []], ["r4:2", "ledAlerta:A", "red", []], ["ledAlerta:K", "mega:GND.7", "black", []],
+    ["relayBomba:VCC", "mega:5V", "red", []], ["relayBomba:GND", "mega:GND.8", "black", []], ["relayBomba:IN", "mega:8", "blue", []],
+    ["relayVent:VCC", "mega:5V", "red", []], ["relayVent:GND", "mega:GND.9", "black", []], ["relayVent:IN", "mega:9", "blue", []]
+  ]
+}
